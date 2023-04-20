@@ -7,6 +7,15 @@ function HTMLActuator() {
   this.score = 0;
 }
 
+HTMLActuator.prototype.sendMessage = function(message) {
+  // tmp copied from addition
+  var addition = document.createElement("div");
+  addition.classList.add("score-addition");
+  addition.textContent = message;
+  this.scoreContainer.appendChild(addition);
+
+}
+
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
 
@@ -23,6 +32,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
+
+    window.console.log(metadata)
+    self.updateUpLocked(metadata.upLocked)
 
     if (metadata.terminated) {
       if (metadata.over) {
@@ -115,10 +127,13 @@ HTMLActuator.prototype.updateScore = function (score) {
     var addition = document.createElement("div");
     addition.classList.add("score-addition");
     addition.textContent = "+" + difference;
-
     this.scoreContainer.appendChild(addition);
   }
 };
+
+// Add lock up indication  same behavior than differance
+
+
 
 HTMLActuator.prototype.updateBestScore = function (bestScore) {
   this.bestContainer.textContent = bestScore;

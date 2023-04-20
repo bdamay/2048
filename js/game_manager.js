@@ -5,6 +5,7 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.actuator       = new Actuator;
 
   this.startTiles     = 2;
+  this.upLocked = true; // locking up direction
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -130,6 +131,17 @@ GameManager.prototype.moveTile = function (tile, cell) {
 GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
+  // This is intended to prevent accidental locks
+  if (direction === 0 && self.upLocked) {
+    self.upLocked = !self.upLocked;
+    this.actuator.sendMessage('Warning - up Unlocked !! '); // send message
+    return; // locked => do nothing
+  } else {
+    if (!self.upLocked) {
+      this.actuator.sendMessage('up relocked '); // send message
+    }
+    self.upLocked = true;
+  }
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
