@@ -476,7 +476,7 @@ hr {
 
 @include smaller($mobile-threshold) {
   // Redefine variables for smaller screens
-  $field-width: 320px;
+  $field-width: 340px;
   $grid-spacing: 10px;
   $grid-row-cells: 4;
   $tile-size: math.div($field-width - $grid-spacing * ($grid-row-cells + 1), $grid-row-cells);
