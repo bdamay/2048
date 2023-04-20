@@ -33,8 +33,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
 
-    window.console.log(metadata)
-    self.updateUpLocked(metadata.upLocked)
 
     if (metadata.terminated) {
       if (metadata.over) {
