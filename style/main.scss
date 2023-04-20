@@ -1,10 +1,12 @@
+@use "sass:math";
+
 @import "helpers";
 @import "fonts/clear-sans.css";
 
 $field-width: 500px;
 $grid-spacing: 15px;
 $grid-row-cells: 4;
-$tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+$tile-size: math.div($field-width - $grid-spacing * ($grid-row-cells + 1), $grid-row-cells);
 $tile-border-radius: 3px;
 
 $mobile-threshold: $field-width + 20px;
@@ -32,7 +34,7 @@ html, body {
 }
 
 body {
-  margin: 80px 0;
+  margin: 30px 0;
 }
 
 .heading {
@@ -354,7 +356,7 @@ hr {
 
     &.tile-#{$power} .tile-inner {
       // Calculate base background color
-      $gold-percent: ($exponent - 1) / ($limit - 1) * 100;
+      $gold-percent: math.div($exponent - 1, $limit - 1) * 100;
       $mixed-background: mix($tile-gold-color, $tile-color, $gold-percent);
 
       $nth-color: nth($special-colors, $exponent);
@@ -374,11 +376,11 @@ hr {
       background: $mixed-background;
 
       // Add glow
-      $glow-opacity: max($exponent - 4, 0) / ($limit - 4);
+      $glow-opacity: math.div(max($exponent - 4, 0), $limit - 4);
 
       @if not $special-background {
-        box-shadow: 0 0 30px 10px rgba($tile-gold-glow-color, $glow-opacity / 1.8),
-                    inset 0 0 0 1px rgba(white, $glow-opacity / 3);
+        box-shadow: 0 0 30px 10px rgba($tile-gold-glow-color, math.div($glow-opacity, 1.8)),
+                    inset 0 0 0 1px rgba(white, math.div($glow-opacity, 3));
       }
 
       // Adjust font size for bigger numbers
@@ -474,10 +476,10 @@ hr {
 
 @include smaller($mobile-threshold) {
   // Redefine variables for smaller screens
-  $field-width: 280px;
+  $field-width: 320px;
   $grid-spacing: 10px;
   $grid-row-cells: 4;
-  $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+  $tile-size: math.div($field-width - $grid-spacing * ($grid-row-cells + 1), $grid-row-cells);
   $tile-border-radius: 3px;
   $game-container-margin-top: 17px;
 
@@ -527,11 +529,145 @@ hr {
   }
 
   // Render the game field at the right width
-  @include game-field;
+  @include game-field; // BDA says not working on field width ?  ??
 
-  // Rest of the font-size adjustments in the tile class
-  .tile .tile-inner {
-    font-size: 35px;
+
+  .game-container {
+    margin-top: $game-container-margin-top;
+    position: relative;
+    padding: $grid-spacing;
+
+    cursor: default;
+    -webkit-touch-callout: none;
+    -ms-touch-callout: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    -ms-touch-action: none;
+    touch-action: none;
+
+    background: $game-container-background;
+    border-radius: $tile-border-radius * 2;
+    width: $field-width;
+    height: $field-width;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    .game-message {
+      display: none;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba($tile-color, .5);
+      z-index: 100;
+
+      text-align: center;
+
+      p {
+        font-size: 60px;
+        font-weight: bold;
+        height: 60px;
+        line-height: 60px;
+        margin-top: 222px;
+        // height: $field-width;
+        // line-height: $field-width;
+      }
+
+      .lower {
+        display: block;
+        margin-top: 59px;
+      }
+
+      a {
+        @include button;
+        margin-left: 9px;
+        // margin-top: 59px;
+
+	&.keep-playing-button {
+	  display: none;
+	}
+      }
+
+      @include animation(fade-in 800ms ease $transition-speed * 12);
+      @include animation-fill-mode(both);
+
+      &.game-won {
+        background: rgba($tile-gold-color, .5);
+        color: $bright-text-color;
+
+	a.keep-playing-button {
+	  display: inline-block;
+	}
+      }
+
+      &.game-won, &.game-over {
+        display: block;
+      }
+    }
+  }
+
+  .grid-container {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .grid-row {
+    margin-bottom: $grid-spacing;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+
+  .grid-cell {
+    width: $tile-size;
+    height: $tile-size;
+    margin-right: $grid-spacing;
+    float: left;
+
+    border-radius: $tile-border-radius;
+
+    background: rgba($tile-color, .35);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .tile-container {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .tile {
+    &, .tile-inner {
+      width: ceil($tile-size);
+      height: ceil($tile-size);
+      line-height: ceil($tile-size);
+    }
+
+    // Build position classes
+    @for $x from 1 through $grid-row-cells {
+      @for $y from 1 through $grid-row-cells {
+        &.tile-position-#{$x}-#{$y} {
+          $xPos: floor(($tile-size + $grid-spacing) * ($x - 1));
+          $yPos: floor(($tile-size + $grid-spacing) * ($y - 1));
+          @include transform(translate($xPos, $yPos));
+        }
+      }
+    }
   }
 
   .game-message {
