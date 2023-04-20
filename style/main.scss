@@ -107,6 +107,18 @@ h1.title {
     @include animation(move-up 600ms ease-in);
     @include animation-fill-mode(both);
   }
+    .warning-message {
+    position: absolute;
+    right: 30px;
+    color: red;
+    font-size: $height;
+    line-height: $height;
+    font-weight: bold;
+    z-index: 100;
+    @include animation(move-up 1000ms ease-in);
+    @include animation-fill-mode(both);
+  }
+
 }
 
 .score-container:after {

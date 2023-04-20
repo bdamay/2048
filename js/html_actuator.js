@@ -9,10 +9,10 @@ function HTMLActuator() {
 
 HTMLActuator.prototype.sendMessage = function(message) {
   // tmp copied from addition
-  var addition = document.createElement("div");
-  addition.classList.add("score-addition");
-  addition.textContent = message;
-  this.scoreContainer.appendChild(addition);
+  var msg = document.createElement("div");
+  msg.classList.add("warning-message");
+  msg.textContent = message;
+  this.scoreContainer.appendChild(msg);
 
 }
 
