@@ -1,5 +1,6 @@
 // Exponent
 // From: https://github.com/Team-Sass/Sassy-math/blob/master/sass/math.scss#L36
+;
 
 @function exponent($base, $exponent) {
   // reset value
@@ -54,15 +55,16 @@
 
 // Keyframe animations
 @mixin keyframes($animation-name) {
-  @-webkit-keyframes $animation-name {
+  @-webkit-keyframes #{$animation-name} {
     @content;
   }
-  @-moz-keyframes $animation-name {
+  @-moz-keyframes #{$animation-name} {
     @content;
   }
-  @keyframes $animation-name {
+  @keyframes #{$animation-name} {
     @content;
   }
+
 }
 
 // Media queries
