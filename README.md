@@ -1,5 +1,5 @@
 This is my personal fork of original Gabriele Cirulli's program  
-I like the game and made some little improvements for my personal taste. Mostly securing accidental up moves (which i'm pretty getting upset with) along with hiding a bit the reset button. 
+I like the game and made some little improvements for my personal taste. Mostly securing accidental up moves (which i'm pretty getting upset with) along with hiding a bit the reset button. you can play it [here!](http://2048.benoit-damay.com)
 
 Original README from G.Cirulli 
 
