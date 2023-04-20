@@ -18,7 +18,7 @@ $tile-color: #eee4da;
 $tile-gold-color: #edc22e;
 $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
-$game-container-margin-top: 40px;
+$game-container-margin-top: 20px;
 $game-container-background: #bbada0;
 
 $transition-speed: 100ms;
@@ -186,6 +186,7 @@ hr {
 @mixin game-field {
   .game-container {
     margin-top: $game-container-margin-top;
+    margin-bottom: 20px;
     position: relative;
     padding: $grid-spacing;
 
@@ -547,6 +548,7 @@ hr {
 
   .game-container {
     margin-top: $game-container-margin-top;
+    margin-bottom: 20px;
     position: relative;
     padding: $grid-spacing;
 

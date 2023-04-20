@@ -180,7 +180,8 @@ hr {
   }
 }
 .game-container {
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   position: relative;
   padding: 15px;
   cursor: default;
@@ -690,7 +691,8 @@ hr {
     margin-top: 2px;
   }
   .game-container {
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     position: relative;
     padding: 15px;
     cursor: default;
@@ -894,6 +896,7 @@ hr {
   }
   .game-container {
     margin-top: 17px;
+    margin-bottom: 20px;
     position: relative;
     padding: 10px;
     cursor: default;
