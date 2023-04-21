@@ -438,7 +438,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-128 .tile-inner {
-    font-size: 25px;
+    font-size: 34px;
   }
 }
 .tile.tile-256 .tile-inner {
@@ -449,7 +449,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-256 .tile-inner {
-    font-size: 25px;
+    font-size: 34px;
   }
 }
 .tile.tile-512 .tile-inner {
@@ -460,7 +460,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-512 .tile-inner {
-    font-size: 25px;
+    font-size: 34px;
   }
 }
 .tile.tile-1024 .tile-inner {
@@ -471,7 +471,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-1024 .tile-inner {
-    font-size: 15px;
+    font-size: 22px;
   }
 }
 .tile.tile-2048 .tile-inner {
@@ -482,7 +482,7 @@ hr {
 }
 @media screen and (max-width: 520px) {
   .tile.tile-2048 .tile-inner {
-    font-size: 15px;
+    font-size: 22px;
   }
 }
 .tile.tile-super .tile-inner {
