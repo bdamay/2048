@@ -425,7 +425,7 @@ hr {
     font-size: 30px;
 
     @include smaller($mobile-threshold) {
-      font-size: 10px;
+      font-size: 22px;
     }
   }
 }
@@ -507,8 +507,8 @@ hr {
   }
 
   h1.title {
-    font-size: 27px;
-    margin-top: 15px;
+    font-size: 55px;
+    margin-top: 0px;
   }
 
   .container {
