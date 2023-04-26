@@ -134,7 +134,7 @@ GameManager.prototype.move = function (direction) {
   // This is intended to prevent accidental locks
   if (direction === 0 && self.upLocked) {
     self.upLocked = !self.upLocked;
-    this.actuator.sendMessage('Warning - up Unlocked !! '); // send message
+    this.actuator.sendMessage('Warning - up Unlocked !! Redo up to go up !! '); // send message
     return; // locked => do nothing
   } else {
     if (!self.upLocked) {
